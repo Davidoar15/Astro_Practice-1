@@ -1,4 +1,7 @@
 ---
+
+import HeaderButton from "./HeaderButton.astro";
+
 // Dentro de las rayitas va JS/TS
 
 ---
@@ -14,7 +17,8 @@
     </div>
 
     <nav class="flex flex-col items-center justify-between w-full text-center md:flex-row">
-        <a class="text-white" href="/">Latest Launches</a>
-        <a class="text-white" href="/oldest">Oldest Launches</a>
+        <HeaderButton class="text-white" href="/">Latest Launches</HeaderButton>
+        <HeaderButton class="text-white" href="/about">About this Project</HeaderButton>
+        <HeaderButton class="text-white" href="/oldest">Oldest Launches</HeaderButton>
     </nav>
 </header>
