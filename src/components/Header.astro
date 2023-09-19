@@ -1,5 +1,6 @@
 ---
 
+import { Counter } from "./Counter";
 import HeaderButton from "./HeaderButton.astro";
 
 // Dentro de las rayitas va JS/TS
@@ -15,6 +16,8 @@ import HeaderButton from "./HeaderButton.astro";
             All the Information
         </p>
     </div>
+
+    <Counter client:visible transition:persist />
 
     <nav class="flex flex-col items-center justify-between w-full text-center md:flex-row">
         <HeaderButton class="text-white" href="/">
