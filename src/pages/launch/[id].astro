@@ -1,0 +1,35 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getLatestLaunches, getLaunchById } from "../../services/spacex";
+
+const { id } = Astro.params;
+
+/* if (!id) { Astro.redirect("/") } // Only for Server */
+let launch
+if (id) {
+    launch = await getLaunchById({ id })
+}
+
+export async function getStaticPaths() {
+    // Call an external API to know all the ids to generate
+    // Only when you know the quantity of products or services that you offers in your web
+    const launches = await getLatestLaunches()
+    
+    return launches.map((launch) => ({
+        params: { id: launch.id }
+    }))
+
+    /*
+        Manually:
+        return [
+            {params: { id: '5eb87cdbffd86e000604b32c' }}
+        ]
+    */
+}
+
+---
+<Layout title={`Launch ${id}`}>
+    <article>
+        {launch?.id}
+    </article>
+</Layout>
