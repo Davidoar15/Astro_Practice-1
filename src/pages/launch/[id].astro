@@ -2,6 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import { getLatestLaunches, getLaunchById } from "../../services/spacex";
 
+export const prerender = false // server
+
 const { id } = Astro.params;
 
 /* if (!id) { Astro.redirect("/") } // Only for Server */
@@ -10,7 +12,7 @@ if (id) {
     launch = await getLaunchById({ id })
 }
 
-export async function getStaticPaths() {
+/*export async function getStaticPaths() {
     // Call an external API to know all the ids to generate
     // Only when you know the quantity of products or services that you offers in your web
     const launches = await getLatestLaunches()
@@ -24,12 +26,14 @@ export async function getStaticPaths() {
         return [
             {params: { id: '5eb87cdbffd86e000604b32c' }}
         ]
-    */
-}
+    
+}*/
 
 ---
 <Layout title={`Launch ${id}`}>
-    <article>
-        {launch?.id}
+    <article class="flex flex-col gap-y-4">
+        <img class="w-60 h-auto" src={launch?.links?.patch.small} alt={launch?.name}/>
+        <h2 class="text-white text-4xl font-bold">Launch #{launch?.flight_number}</h2>
+        <p class="text-white text-lg">{launch?.details}</p>
     </article>
 </Layout>
