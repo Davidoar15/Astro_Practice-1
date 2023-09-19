@@ -17,11 +17,16 @@ const res = await fetch('https://api.spacexdata.com/v5/launches/query', {
     }),
 });
 
-const { docs } = await res.json() as APISpaceXResponse
+const { docs: launches } = (await res.json()) as APISpaceXResponse
 ---
 
 <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-    <article>
-
-    </article>
+    {
+        launches.map((launch) => (
+            <article>
+                <img src={launch.links.patch.small} alt=""/>
+                <h2>Launch #{launch.id}</h2>
+            </article>
+        ))
+    }
 </div>
